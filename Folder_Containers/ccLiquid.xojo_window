@@ -1107,7 +1107,7 @@ End
 		    
 		    Try
 		      
-		      rs = db.SelectSQL( "SELECT * FROM storage WHERE id_item=? AND theType=?", Liquid.ID, Ingredient.Types.Liquid )
+		      rs = db.SelectSQL( "SELECT * FROM storage WHERE id_item=? AND theType=?", Liquid.ID, Integer( Ingredient.Types.Liquid ) )
 		      If rs <> Nil And Not rs.AfterLastRow Then
 		        Storage.Amount.Text = Format( rs.Column( "theValue" ).DoubleValue, "#.0#" )
 		        Storage.Units.ListIndexFromRowTag( rs.Column( "theUnit" ).StringValue.DefineEncoding( Encodings.UTF8 ) )
@@ -1121,7 +1121,7 @@ End
 		        "WHERE " + _
 		        "theType = ? And " + _
 		        "liquid_id = ?", _
-		        Ingredient.Types.Flavour, _
+		        Integer( Ingredient.Types.Flavour ), _
 		        Liquid.ID )
 		        
 		        While rs <> Nil And Not rs.AfterLastRow
@@ -1142,7 +1142,7 @@ End
 		      rs = db.SelectSQL( "SELECT liquids_ingredients.theIngredientID, bases.nicotine " + _
 		      "FROM liquids_ingredients " + _
 		      "LEFT JOIN bases ON liquids_ingredients.theIngredientID = bases.id " + _
-		      "WHERE liquids_ingredients.liquid_id=? AND liquids_ingredients.theType=?", Liquid.ID, Ingredient.Types.Base )
+		      "WHERE liquids_ingredients.liquid_id=? AND liquids_ingredients.theType=?", Liquid.ID, Integer( Ingredient.Types.Base ) )
 		      
 		      If rs <> Nil And Not rs.AfterLastRow Then
 		        
@@ -1151,7 +1151,7 @@ End
 		        
 		      End If
 		      
-		      rs = db.SelectSQL( "SELECT * FROM dealers_items WHERE id_item=? AND theType=?", Liquid.ID, Ingredient.Types.Liquid )
+		      rs = db.SelectSQL( "SELECT * FROM dealers_items WHERE id_item=? AND theType=?", Liquid.ID, Integer( Ingredient.Types.Liquid ) )
 		      
 		      If rs <> Nil And Not rs.AfterLastRow Then
 		        
@@ -1159,7 +1159,7 @@ End
 		        
 		      End If
 		      
-		      rs = db.SelectSQL( "SELECT * FROM storage WHERE id_item=? AND theType=?", Liquid.ID, Ingredient.Types.Liquid )
+		      rs = db.SelectSQL( "SELECT * FROM storage WHERE id_item=? AND theType=?", Liquid.ID, Integer( Ingredient.Types.Liquid ) )
 		      
 		      If rs <> Nil And Not rs.AfterLastRow Then
 		        
@@ -1619,18 +1619,18 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CellPressed(row As Integer, column As Integer, x As Integer, y As Integer) As Boolean
-		  #pragma unused y
-		  #pragma unused x
+		  #Pragma Unused y
+		  #Pragma Unused x
 		  
-		  If row > -1 And column=2 Then
+		  If row > -1 And column = 2 Then
 		    
 		    Try
 		      
-		      db.ExecuteSQL("UPDATE liquid_ingred SET theValue=? WHERE id=?", _
-		      CDbl(Me.CellTextAt(row,column)), _
-		      FlavorList.RowTagAt(row).IntegerValue )
+		      db.ExecuteSQL( "UPDATE liquids_ingredients SET theValue=? WHERE id=?", _
+		      Me.CellTextAt( row, column ).ToDouble, _
+		      FlavorList.RowTagAt( row ).IntegerValue )
 		      
-		      Me.CellTextAt(row,column) = Format(CDbl(Me.CellTextAt(row,column)), "#.0#")
+		      Me.CellTextAt( row, column ) = Format( CDbl( Me.CellTextAt( row, column ) ), "#.0#" )
 		      
 		    Catch err As DatabaseException
 		      

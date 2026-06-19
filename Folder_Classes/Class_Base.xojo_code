@@ -20,7 +20,7 @@ Protected Class Class_Base
 		      ChangedOn = rs.Column( "changed_on" ).DateTimeValue
 		      mLogo = rs.Column( "image" ).PictureValue 
 		      
-		      rs = db.SelectSQL( "SELECT id_dealer FROM dealers_items WHERE id_item=? AND theType=?", ID, Ingredient.Types.Base )
+		      rs = db.SelectSQL( "SELECT id_dealer FROM dealers_items WHERE id_item=? AND theType=?", ID, Integer( Ingredient.Types.Base ) )
 		      If rs <> Nil And Not rs.AfterLastRow Then mDistributor = rs.Column( "id_dealer" ).IntegerValue
 		      
 		      Storage = New Class_Storage_Base(ID)
@@ -49,8 +49,8 @@ Protected Class Class_Base
 		      ID = rs.Column( "id" ).IntegerValue
 		      mName = rs.Column( "base_name" ).StringValue.DefineEncoding( Encodings.UTF8 )
 		      
-		      db.ExecuteSQL( "INSERT INTO storage (id_item,theType) VALUES (?,?)", ID, Ingredient.Types.Base )
-		      db.ExecuteSQL( "INSERT INTO dealers_items (id_item,theType) VALUES (?,?)", ID, Ingredient.Types.Base )
+		      db.ExecuteSQL( "INSERT INTO storage (id_item,theType) VALUES (?,?)", ID, Integer( Ingredient.Types.Base ) )
+		      db.ExecuteSQL( "INSERT INTO dealers_items (id_item,theType) VALUES (?,?)", ID, Integer( Ingredient.Types.Base ) )
 		      
 		    End If
 		    
@@ -67,7 +67,7 @@ Protected Class Class_Base
 		  Try
 		    
 		    db.ExecuteSQL( "DELETE FROM bases WHERE id=?", ID )
-		    db.ExecuteSQL( "DELETE FROM liquid_ingred WHERE theIngredientID=? AND theType=1", ID )
+		    db.ExecuteSQL( "DELETE FROM liquids_ingredients WHERE theIngredientID=? AND theType=1", ID )
 		    db.ExecuteSQL( "DELETE FROM storage_base WHERE id_base=?", ID )
 		    db.ExecuteSQL( "DELETE FROM dealer_base WHERE id_base=?", ID )
 		    
@@ -91,7 +91,7 @@ Protected Class Class_Base
 		    value, _
 		    unit, _
 		    ID, _
-		    Ingredient.Types.Base )
+		    Integer( Ingredient.Types.Base ) )
 		    
 		    Return True
 		    
@@ -144,7 +144,7 @@ Protected Class Class_Base
 			Set
 			  Try
 			    
-			    db.ExecuteSQL( "UPDATE dealers_items SET id_dealer=? WHERE id_item=? AND theType=?",  value, ID, Ingredient.Types.Base )
+			    db.ExecuteSQL( "UPDATE dealers_items SET id_dealer=? WHERE id_item=? AND theType=?",  value, ID, Integer( Ingredient.Types.Base ) )
 			    mDistributor = value
 			    
 			  Catch err As DatabaseException

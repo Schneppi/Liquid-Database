@@ -6,7 +6,7 @@ Protected Class Class_Storage_Base
 		  
 		  Try
 		    
-		    Var rs As RowSet = db.SelectSQL( "SELECT * FROM storage WHERE id_item=? AND theType=?", dbBaseID, Ingredient.Types.Base )
+		    Var rs As RowSet = db.SelectSQL( "SELECT * FROM storage WHERE id_item=? AND theType=?", dbBaseID, Integer( Ingredient.Types.Base ) )
 		    
 		    If rs <> Nil And Not rs.AfterLastRow Then
 		      

@@ -690,7 +690,7 @@ End
 		    
 		    Try
 		      
-		      Var rs As RowSet = db.SelectSQL("SELECT * FROM storage WHERE id_item=? AND theType=?", Aroma.ID, Ingredient.Types.Flavour)
+		      Var rs As RowSet = db.SelectSQL("SELECT * FROM storage WHERE id_item=? AND theType=?", Aroma.ID, Integer( Ingredient.Types.Flavour) )
 		      
 		      If rs <> Nil And Not rs.AfterLastRow Then
 		        

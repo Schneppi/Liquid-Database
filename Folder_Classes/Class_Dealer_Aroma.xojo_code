@@ -6,7 +6,7 @@ Protected Class Class_Dealer_Aroma
 		  
 		  Try
 		    
-		    Var rs As RowSet = db.SelectSQL( "SELECT * FROM dealers_items WHERE id_item=? AND theType=?", AromaID, Ingredient.Types.Flavour )
+		    Var rs As RowSet = db.SelectSQL( "SELECT * FROM dealers_items WHERE id_item=? AND theType=?", AromaID, Integer( Ingredient.Types.Flavour ) )
 		    
 		    If rs <> Nil And Not rs.AfterLastRow Then
 		      
@@ -16,7 +16,7 @@ Protected Class Class_Dealer_Aroma
 		      
 		    Else
 		      
-		      db.ExecuteSQL( "INSERT INTO dealers_items (id_item, id_dealer, theValue, theType) VALUES (?,?,?,?)", AromaID, -1, -1, Ingredient.Types.Flavour )
+		      db.ExecuteSQL( "INSERT INTO dealers_items (id_item, id_dealer, theValue, theType) VALUES (?,?,?,?)", AromaID, -1, -1, Integer( Ingredient.Types.Flavour ) )
 		      
 		    End If
 		    
@@ -32,7 +32,7 @@ Protected Class Class_Dealer_Aroma
 		  
 		  Try
 		    
-		    db.ExecuteSQL( "DELETE FROM dealers_items WHERE id_item=? AND theType=?", Aroma, Ingredient.Types.Flavour )
+		    db.ExecuteSQL( "DELETE FROM dealers_items WHERE id_item=? AND theType=?", Aroma, Integer( Ingredient.Types.Flavour ) )
 		    
 		  Catch err As DatabaseException
 		    
@@ -57,7 +57,7 @@ Protected Class Class_Dealer_Aroma
 			  
 			  Try
 			    
-			    db.ExecuteSQL( "UPDATE dealers_items SET id_dealer=? WHERE id_item=? AND theType=?", value, Aroma, Ingredient.Types.Flavour )
+			    db.ExecuteSQL( "UPDATE dealers_items SET id_dealer=? WHERE id_item=? AND theType=?", value, Aroma, Integer( Ingredient.Types.Flavour ) )
 			    mDealer = value
 			    
 			  Catch err As DatabaseException
@@ -88,7 +88,7 @@ Protected Class Class_Dealer_Aroma
 			  
 			  Try
 			    
-			    db.ExecuteSQL( "UPDATE dealers_items SET theValue=? WHERE id_item=? AND theType=?", value, Aroma, Ingredient.Types.Flavour )
+			    db.ExecuteSQL( "UPDATE dealers_items SET theValue=? WHERE id_item=? AND theType=?", value, Aroma, Integer( Ingredient.Types.Flavour ) )
 			    mValue = value
 			    
 			  Catch err As DatabaseException

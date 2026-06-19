@@ -504,18 +504,18 @@ Protected Module Module_Methods
 
 	#tag Method, Flags = &h0
 		Function MaximumFlavorCount() As Integer
-		  Dim rs As RowSet = db.SelectSQL("Select COUNT(liquid_id) FROM liquid_ingred WHERE theType = 0 GROUP BY liquid_id")
-		  Dim X As Integer
+		  Var rs As RowSet = db.SelectSQL( "Select COUNT(liquid_id) FROM liquids_ingredients WHERE theType=? GROUP BY liquid_id", Integer( Ingredient.Types.Flavour ) )
+		  Var X As Integer
 		  
 		  Try
 		    
-		    If rs<>Nil And Not rs.AfterLastRow Then
+		    If rs <> Nil And Not rs.AfterLastRow Then
 		      
 		      While Not rs.AfterLastRow
 		        
-		        If X < rs.Column("COUNT(liquid_id)").IntegerValue Then
+		        If X < rs.Column( "COUNT(liquid_id)" ).IntegerValue Then
 		          
-		          X = rs.Column("COUNT(liquid_id)").IntegerValue
+		          X = rs.Column( "COUNT(liquid_id)" ).IntegerValue
 		          
 		        End If
 		        

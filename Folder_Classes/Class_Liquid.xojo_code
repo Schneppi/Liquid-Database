@@ -8,7 +8,7 @@ Protected Class Class_Liquid
 		    IngredientID, _
 		    ID, _
 		    value, _
-		    Ingredient.Types.Flavour )
+		    Integer( Ingredient.Types.Flavour ) )
 		    
 		    Flavours.Add IngredientID
 		    
@@ -41,7 +41,7 @@ Protected Class Class_Liquid
 		    
 		    If ID > -1 Then
 		      
-		      rs = db.SelectSQL( "SELECT theIngredientID FROM liquids_ingredients WHERE liquid_id = ? AND theType=?", ID, Ingredient.Types.Flavour )
+		      rs = db.SelectSQL( "SELECT theIngredientID FROM liquids_ingredients WHERE liquid_id = ? AND theType=?", ID, Integer( Ingredient.Types.Flavour ) )
 		      
 		      If rs <> Nil And Not rs.AfterLastRow Then
 		        
@@ -80,10 +80,10 @@ Protected Class Class_Liquid
 		      mName = rs.Column( "liquid_name" ).StringValue.DefineEncoding( Encodings.UTF8 )
 		      Changed = DateTime.Now
 		      
-		      db.ExecuteSQL( "INSERT INTO liquids_ingredients (liquid_id,theType) VALUES (?,?)", ID, Ingredient.Types.Base ) // Base
-		      db.ExecuteSQL( "INSERT INTO liquids_ingredients (liquid_id,theType) VALUES (?,?)", ID, Ingredient.Types.Nicotin ) // Nikotin
-		      db.ExecuteSQL( "INSERT INTO storage (id_item,theType) VALUES (?,?)", ID, Ingredient.Types.Liquid )
-		      db.ExecuteSQL( "INSERT INTO dealers_items (id_item,theType) VALUES (?,?)", ID, Ingredient.Types.Liquid )
+		      db.ExecuteSQL( "INSERT INTO liquids_ingredients (liquid_id,theType) VALUES (?,?)", ID, Integer( Ingredient.Types.Base ) ) // Base
+		      db.ExecuteSQL( "INSERT INTO liquids_ingredients (liquid_id,theType) VALUES (?,?)", ID, Integer( Ingredient.Types.Nicotin ) ) // Nikotin
+		      db.ExecuteSQL( "INSERT INTO storage (id_item,theType) VALUES (?,?)", ID, Integer( Ingredient.Types.Liquid ) )
+		      db.ExecuteSQL( "INSERT INTO dealers_items (id_item,theType) VALUES (?,?)", ID, Integer( Ingredient.Types.Liquid ) )
 		      
 		    End If
 		    
@@ -101,8 +101,8 @@ Protected Class Class_Liquid
 		    
 		    db.ExecuteSQL( "DELETE FROM liquids WHERE id=?", ID )
 		    db.ExecuteSQL( "DELETE FROM liquids_ingredients WHERE liquid_id=?", ID )
-		    db.ExecuteSQL( "DELETE FROM storage WHERE id_item=? AND theType=?", ID, Ingredient.Types.Liquid )
-		    db.ExecuteSQL( "DELETE FROM dealers_items WHERE id_item=? AND theType=?", ID, Ingredient.Types.Liquid )
+		    db.ExecuteSQL( "DELETE FROM storage WHERE id_item=? AND theType=?", ID, Integer( Ingredient.Types.Liquid ) )
+		    db.ExecuteSQL( "DELETE FROM dealers_items WHERE id_item=? AND theType=?", ID, Integer( Ingredient.Types.Liquid ) )
 		    
 		    Return True
 		    
@@ -144,7 +144,7 @@ Protected Class Class_Liquid
 		    IngredientID, _
 		    theValue, _
 		    ID, _
-		    Ingredient.Types.Base )
+		    Integer( Ingredient.Types.Base ) )
 		    
 		  Catch err As DatabaseException
 		    
@@ -164,7 +164,7 @@ Protected Class Class_Liquid
 		    db.ExecuteSQL("UPDATE dealers_items SET id_dealer=? WHERE id_item=? AND theType=?", _
 		    DealerID, _
 		    ID, _
-		    Ingredient.Types.Liquid )
+		    Integer( Ingredient.Types.Liquid ) )
 		    
 		  Catch err As DatabaseException
 		    
@@ -182,7 +182,7 @@ Protected Class Class_Liquid
 		    db.ExecuteSQL("UPDATE liquids_ingredients SET theValue=? WHERE liquid_id=? AND theType=?", _
 		    value, _
 		    ID, _
-		    Ingredient.Types.Nicotin )
+		    Integer( Ingredient.Types.Nicotin ) )
 		    
 		  Catch err As DatabaseException
 		    
@@ -201,7 +201,7 @@ Protected Class Class_Liquid
 		    value, _
 		    unit, _
 		    ID, _
-		    Ingredient.Types.Liquid )
+		    Integer( Ingredient.Types.Liquid ) )
 		    
 		    Return True
 		    

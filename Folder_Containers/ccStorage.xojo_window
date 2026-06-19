@@ -221,7 +221,7 @@ End
 		    "INNER JOIN storage_units  ON storage_units.id = storage.theUnit " + _
 		    "WHERE storage.theValue > 0 " + _
 		    "AND storage.theType=? " + _
-		    "ORDER BY liquid_name", Ingredient.Types.Liquid )
+		    "ORDER BY liquid_name", Integer( Ingredient.Types.Liquid ) )
 		    
 		    If rs <> Nil And Not rs.AfterLastRow Then
 		      
@@ -270,7 +270,7 @@ End
 		    "INNER JOIN storage_units  ON storage_units.id = storage.theUnit " + _
 		    "WHERE storage.theValue > 0 " + _
 		    "AND storage.theType=? " + _
-		    "ORDER BY flavor_name", Ingredient.Types.Flavour )
+		    "ORDER BY flavor_name", Integer( Ingredient.Types.Flavour ) )
 		    
 		    If rs <> Nil And Not rs.AfterLastRow Then
 		      
@@ -319,7 +319,7 @@ End
 		    "INNER JOIN storage_units  ON storage_units.id = storage.theUnit " + _
 		    "WHERE storage.theValue > 0 " + _
 		    "AND storage.theType=? " + _
-		    "ORDER BY base_name", Ingredient.Types.Base )
+		    "ORDER BY base_name", Integer( Ingredient.Types.Base ) )
 		    
 		    If rs <> Nil And Not rs.AfterLastRow Then
 		      
