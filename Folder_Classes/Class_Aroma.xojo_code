@@ -53,7 +53,7 @@ Protected Class Class_Aroma
 		      
 		      db.ExecuteSQL( "INSERT INTO storage (id_item,theType,theUnit,theValue) VALUES (?,?,-1,-1)", _
 		      ID, _
-		      Ingredient.Types.Flavour )
+		      Integer( Ingredient.Types.Flavour ) )
 		      
 		    End If
 		    
@@ -71,8 +71,8 @@ Protected Class Class_Aroma
 		  Try
 		    
 		    db.ExecuteSQL( "DELETE FROM flavors WHERE id=?", ID )
-		    db.ExecuteSQL( "DELETE FROM liquids_ingredients WHERE theIngredientID=? AND theType=?", ID, Ingredient.Types.Flavour )
-		    db.ExecuteSQL( "DELETE FROM storage WHERE id_item=? AND theType=?", ID, Ingredient.Types.Flavour )
+		    db.ExecuteSQL( "DELETE FROM liquids_ingredients WHERE theIngredientID=? AND theType=?", ID, Integer( Ingredient.Types.Flavour ) )
+		    db.ExecuteSQL( "DELETE FROM storage WHERE id_item=? AND theType=?", ID, Integer( Ingredient.Types.Flavour ) )
 		    
 		    Dealer.Remove
 		    
@@ -91,11 +91,11 @@ Protected Class Class_Aroma
 		Function UpdateStorage(value As Double, unit As Integer) As Boolean
 		  Try
 		    
-		    db.ExecuteSQL("UPDATE storage SET theValue=?, theUnit=?, theType=? WHERE id_item=?", _
+		    db.ExecuteSQL("UPDATE storage SET theValue=?, theUnit=? WHERE id_item=? AND theType=?", _
 		    value, _
 		    unit, _
-		    Ingredient.Types.Flavour, _
-		    ID )
+		    ID, _
+		    Integer( Ingredient.Types.Flavour ) )
 		    
 		    Return True
 		    
