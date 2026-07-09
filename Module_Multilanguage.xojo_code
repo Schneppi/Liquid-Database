@@ -124,6 +124,10 @@ Protected Module Module_Multilanguage
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Ausgew\xC3\xA4hlte(s) Rezept(e) in CSV-Datei exportieren..."
 	#tag EndConstant
 
+	#tag Constant, Name = kFaultyServerSettings, Type = String, Dynamic = True, Default = \"A connection to the server could not be established. Please check the connection settings and ensure that the server is reachable.", Scope = Public
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Eine Verbindung zum Server konnte nicht hergestellt werden. Bitte pr\xC3\xBCfen Sie die Verbindungseinstellungen und stellen Sie sicher das der Server erreichbar ist."
+	#tag EndConstant
+
 	#tag Constant, Name = kFile, Type = String, Dynamic = True, Default = \"File", Scope = Protected
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Datei"
 	#tag EndConstant

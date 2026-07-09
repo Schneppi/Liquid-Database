@@ -411,7 +411,24 @@ End
 	#tag Event
 		Sub Pressed()
 		  SaveSettings
-		  Quit
+		  
+		  Var testServer As New MySQLCommunityServer
+		  testServer.Host = TextField_ServerAddress.Text.Trim
+		  testServer.UserName = TextField_Username.Text
+		  testServer.Password = TextField_Password.Text
+		  
+		  Try
+		    
+		    testServer.Connect
+		    
+		    Quit
+		    
+		  Catch err As DatabaseException
+		    
+		    MessageDialog.Show( Module_Multilanguage.kFaultyServerSettings )
+		    
+		  End Try
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
