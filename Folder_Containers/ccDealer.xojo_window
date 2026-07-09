@@ -1116,6 +1116,8 @@ End
 		Sub FocusLost()
 		  If Me.Enabled Then
 		    
+		    If Dealer = Nil Then Return
+		    
 		    Dealer.URL = Me.Text.Trim
 		    Me.Text = Dealer.URL
 		    

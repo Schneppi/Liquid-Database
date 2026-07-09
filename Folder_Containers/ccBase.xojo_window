@@ -1240,6 +1240,8 @@ End
 #tag Events btnDealer
 	#tag Event
 		Sub Pressed()
+		  If ppmDealer.SelectedRowIndex = DesktopPopupMenu.NoSelection Then Return
+		  
 		  Window_Main.PushTheButton( Module_Multilanguage.kDealers )
 		  Window_Main.LoadList
 		  Window_Main.Main_Listbox.ScrollToID( ppmDealer.RowTagAt( ppmDealer.SelectedRowIndex ).IntegerValue )
