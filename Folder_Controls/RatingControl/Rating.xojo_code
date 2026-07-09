@@ -18,11 +18,7 @@ Inherits DesktopCanvas
 		Sub Paint(g As Graphics, areas() As Rect)
 		  #Pragma Unused areas
 		  
-		  if showBackground then drawBackGround(g)
-		  
-		  
 		  if showFrame then drawFrame(g)
-		  
 		  
 		  for Each oi as RatingImage in listObjectImage
 		    oi.draw(g)
@@ -43,13 +39,12 @@ Inherits DesktopCanvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(Optional ImageCount As Integer = 5, Optional Frame As Boolean = False, Optional Background As Boolean = False)
+		Sub Constructor(Optional ImageCount As Integer = 5, Optional Frame As Boolean = False)
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor
 		  
 		  quantityOfImages = ImageCount
 		  showFrame = Frame
-		  showBackground = Background
 		  
 		  imageEmpty = Star_Empty_24x24
 		  imageHalf = Star_Half_24x24
@@ -61,41 +56,41 @@ Inherits DesktopCanvas
 
 	#tag Method, Flags = &h21
 		Private Sub createObjectsImage()
-		  dim space as integer = 5
-		  dim lastRight as integer
-		  me.Width = ((space + imageEmpty.Width) * quantityOfImages) + space
-		  me.Height = imageEmpty.Height + 8
+		  Dim space As Integer = 5
+		  Dim lastRight As Integer
+		  Me.Width = ((space + imageEmpty.Width) * quantityOfImages) + space
+		  Me.Height = imageEmpty.Height + 8
 		  
-		  for i as Integer = 0 to quantityOfImages-1
-		    dim e as new RatingImage
+		  For i As Integer = 0 To quantityOfImages-1
+		    Dim e As New RatingImage
 		    e.image = imageEmpty
 		    
-		    if i = 0 then
+		    If i = 0 Then
 		      e.mLeft = space
 		      lastRight = e.mLeft
 		      
-		    else
+		    Else
 		      e.mLeft = lastRight + space + e.image.Width
 		      lastRight = e.mLeft
 		      
-		    end if
+		    End If
 		    
 		    e.mRight = e.mLeft + e.image.Width
-		    e.mTop = (me.Height - imageEmpty.Height) / 2
+		    e.mTop = (Me.Height - imageEmpty.Height) / 2
 		    e.mBottom = e.mTop + e.image.Height
 		    e.downValue = i + i + 1
 		    e.highValue = i + i + 2
 		    
 		    listObjectImage.Add(e)
-		  next
+		  Next
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub drawBackGround(g as Graphics)
-		  g.DrawingColor = Color.RGB(117,239,90)
-		  g.FillRectangle(0, 0, g.Width, g.Height)
+		  g.DrawingColor = Color.FrameColor
+		  g.FillRoundRectangle(0, 0, g.Width, g.Height, 10, 10)
 		  
 		  
 		  
