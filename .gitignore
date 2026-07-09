@@ -10,3 +10,4 @@ Debug*/Debug*\ Libs
 *.xojo_uistate
 *.obsolete*
 Assets/.DS_Store
+.DS_Store
