@@ -282,7 +282,7 @@ Begin DesktopContainer ccLiquid
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   False
-      Scope           =   2
+      Scope           =   0
       SelectedRowIndex=   -1
       TabIndex        =   8
       TabPanelIndex   =   0
@@ -834,7 +834,7 @@ Begin DesktopContainer ccLiquid
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   False
-      Scope           =   2
+      Scope           =   0
       SelectedRowIndex=   -1
       TabIndex        =   24
       TabPanelIndex   =   0
@@ -1408,7 +1408,17 @@ End
 		        
 		      Else
 		        
-		        Liquid.Name = Me.Text.Trim
+		        If Liquid = Nil Then
+		          
+		          Liquid = New Class_Liquid(Me.Text.Trim)
+		          Window_Main.LoadList
+		          
+		        Else
+		          
+		          Liquid.Name = Me.Text.Trim
+		          
+		        End If
+		        
 		        Window_Main.Main_Listbox.SelectedRowText = Me.Text.Trim
 		        
 		      End If

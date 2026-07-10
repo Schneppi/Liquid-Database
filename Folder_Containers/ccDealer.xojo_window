@@ -948,7 +948,17 @@ End
 		        
 		      Else
 		        
-		        Dealer.Name = Me.Text.Trim
+		        If Dealer= Nil Then
+		          
+		          Dealer = New Class_Dealer(Me.Text.Trim)
+		          Window_Main.LoadList
+		          
+		        Else
+		          
+		          Dealer.Name = Me.Text.Trim
+		          
+		        End If
+		        
 		        Window_Main.Main_Listbox.SelectedRowText = Me.Text.Trim
 		        
 		      End If

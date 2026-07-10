@@ -1029,7 +1029,17 @@ End
 		        
 		      Else
 		        
-		        Base.Name = Me.Text.Trim
+		        If Base = Nil Then
+		          
+		          Base = New Class_Base(Me.Text.Trim)
+		          Window_Main.LoadList
+		          
+		        Else
+		          
+		          Base.Name = Me.Text.Trim
+		          
+		        End If
+		        
 		        Window_Main.Main_Listbox.SelectedRowText = Me.Text.Trim
 		        
 		      End If

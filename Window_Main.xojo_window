@@ -578,6 +578,8 @@ End
 		    PagePanel_Main.SelectedPanelIndex = 0
 		    UIStatus(True)
 		    LoadList
+		    Container_Liquid.ppmAroma.List_Flavors
+		    Container_Liquid.ppmBase.List_Bases
 		    
 		  Case Module_Multilanguage.kFlavors // Aroma
 		    

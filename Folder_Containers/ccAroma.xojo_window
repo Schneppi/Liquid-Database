@@ -934,6 +934,7 @@ End
 		        If Aroma = Nil Then
 		          
 		          Aroma = New Class_Aroma( txtName.Text.Trim )
+		          Window_Main.LoadList
 		          
 		        Else
 		          
